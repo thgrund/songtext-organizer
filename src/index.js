@@ -1,12 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { createStore, applyMiddleware } from 'redux';
+import { createEpicMiddleware } from 'redux-observable';
+import rootReducer from './reducers';
+import rootEpic from './epics';
+import { render } from 'react-dom';
+import 'semantic-ui-css/semantic.min.css';
+import './assets/css/song.css';
+import { loadInitialSongState, loadInitialThemeState } from './actions/InitialStateLoaderAction';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Provider } from 'react-redux';
+import OrganizerContainer from './containers/OrganizerContainer'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
+const store = createStore(
+    rootReducer,
+    applyMiddleware(epicMiddleware)
+);
+
+store.dispatch(loadInitialThemeState());
+store.dispatch(loadInitialSongState());
+
+render(
+    <Provider store={store}>
+      <OrganizerContainer />
+    </Provider>,
+    document.getElementById('root')
+);
+

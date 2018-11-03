@@ -1,0 +1,10 @@
+body {
+  background-color: #f7f7f7;
+}
+.floated {
+  float: right;
+}
+
+.listElement {
+  font-weight: bold;
+}

@@ -1,0 +1,68 @@
+@startuml
+actor User
+participant "SongNewForm" as snf
+participant "addSong:Song Action" as sa
+participant "song:Song Reducer" as sr
+participant "addSong:Song Epic" as se
+participant "addTheme:Theme Action" as ta
+participant "theme:Theme Reducer" as tr
+participant "addTheme:Theme Epic" as te
+participant "SQLite API" as sql
+
+User->snf: click add button
+activate snf
+
+snf->sa: trigger deleteTask action
+activate sa
+
+sa->sr: dispatch ADD_TASK action
+activate sr
+  sr->sr: compute ADD_TASK action
+  sr->snf: return new state
+deactivate sr
+
+snf->snf: rerender component
+sa->se: trigger epic
+deactivate sa
+activate se
+
+se->sql: add song asynchronously with ajax
+alt SQLite API call successful
+  sql -> se: catch ajax success response
+  se -> ta: trigger addTheme action
+  activate ta
+
+  ta -> tr: dispatch ADD_THEME action
+  activate tr
+   tr -> tr: compute ADD_THEME action
+   tr -> snf : return new state
+  deactivate tr
+
+  ta -> te : trigger epic
+  deactivate ta
+
+  activate te
+
+    te -> sql :
+
+  deactivate te
+
+  else SQLite API call error
+
+    sql -> se: catch ajax error
+
+    se -> sa: trigger setGitlabSyncFailureToTrue action
+  deactivate se
+  activate sa
+
+    sa -> sr: dispatch SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE action
+  deactivate sa
+activate sr
+
+
+  sr -> sr: compute SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE action
+  sr -> snf: return new state
+deactivate sr
+  snf -> snf: rerender component
+end
+@enduml
