@@ -1,13 +1,40 @@
 import {
-  ADD_SONG, RECEIVE_SONGS, DELETE_SONG
+  INSERT_SONG, UPDATE_SONG,
+  ADD_SONG, RECEIVE_SONGS, DELETE_SONG,
+  SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE,
+  SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE
 } from '../constants/SongFormActionTypes';
 
-import SongCounter from "../utils/SongCounter";
+
+export const insertSong = (themeId, title, poeticReferencePicture, songtext, themeContentRelated,themeDetailed, rhymingScheme, chords) => ({
+  themeId,
+  title,
+  poeticReferencePicture,
+  songtext,
+  themeContentRelated,
+  themeDetailed,
+  rhymingScheme,
+  chords,
+  type: INSERT_SONG
+});
+
+export const updateSong = (songId, themeId, title, poeticReferencePicture, songtext, themeContentRelated,themeDetailed, rhymingScheme, chords) => ({
+  songId,
+  themeId,
+  title,
+  poeticReferencePicture,
+  songtext,
+  themeContentRelated,
+  themeDetailed,
+  rhymingScheme,
+  chords,
+  type: UPDATE_SONG
+});
 
 
-export const addSong = (themeTitle, title, poeticReferencePicture, songtext, themeContentRelated,themeDetailed, rhymingScheme, chords) => ({
-  themeTitle,
-  songId: SongCounter.increment(),
+export const addSong = (songId, themeId, title, poeticReferencePicture, songtext, themeContentRelated,themeDetailed, rhymingScheme, chords) => ({
+  songId,
+  themeId,
   title,
   poeticReferencePicture,
   songtext,
@@ -17,6 +44,7 @@ export const addSong = (themeTitle, title, poeticReferencePicture, songtext, the
   chords,
   type: ADD_SONG
 });
+
 
 export const receiveSongs = (songs, themes) => ({
   songs,
@@ -28,4 +56,14 @@ export const deleteSong = (songId, themeId) => ({
   songId,
   themeId,
   type: DELETE_SONG
+});
+
+export const setSongSqliteSyncStatusToTrue = (songId) => ({
+  songId,
+  type: SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE
+});
+
+export const setSongSqliteSyncStatusToFalse = (songId) => ({
+  songId,
+  type: SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE
 });

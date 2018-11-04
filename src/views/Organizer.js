@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Container, Menu } from 'semantic-ui-react'
 import SongListContainer from '../containers/SongListContainer';
-import SongNewForm from './SongNewForm';
+import SongNewFormContainer from '../containers/SongNewFormContainer';
 import SongEditFormContainer from '../containers/SongEditFormContainer';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -44,7 +44,7 @@ export default class Organizer extends Component {
               <Route exact path="/" component={SongListContainer} />
               <Route exact path="/song" component={SongListContainer} />
               <Route exact path="/theme" component={ThemeListContainer} />
-              <Route exact path="/song/new" component={SongNewForm} />
+              <Route exact path="/song/new" component={SongNewFormContainer} />
               <Route path="/song/edit/:id" component={SongEditFormContainer} />
 
           </Container>

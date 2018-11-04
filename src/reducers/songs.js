@@ -1,9 +1,10 @@
-import {
-  ADD_SONG, DELETE_SONG
-} from '../constants/SongFormActionTypes';
+import {DELETE_SONG, ADD_SONG,
+  RECEIVE_SONGS, UPDATE_SONG,
+  SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE,
+  SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE} from "../constants/SongFormActionTypes";
+
 import {default as Immutable, Map} from 'immutable';
 import Song from '../records/Song';
-import {RECEIVE_SONGS} from "../constants/SongFormActionTypes";
 
 export default function songs (state = Map({}), action) {
   switch (action.type) {
@@ -15,11 +16,28 @@ export default function songs (state = Map({}), action) {
 
       return state.set(action.songId, new Song ({
         songId: action.songId,
+        themeId: action.themeId,
         title: action.title,
         poeticReferencePicture: action.poeticReferencePicture,
         songtext: action.songtext,
         themeContentRelated: action.themeContentRelated,
-        themeDetailed: action.themeDetailed,      }));
+        themeDetailed: action.themeDetailed,
+        rhymingScheme: action.rhymingScheme,
+        chords: action.chords
+      }));
+
+    case UPDATE_SONG:
+      return state.set(action.songId, new Song ({
+        songId: action.songId,
+        themeId: action.themeId,
+        title: action.title,
+        poeticReferencePicture: action.poeticReferencePicture,
+        songtext: action.songtext,
+        themeContentRelated: action.themeContentRelated,
+        themeDetailed: action.themeDetailed,
+        rhymingScheme: action.rhymingScheme,
+        chords: action.chords
+      }));
 
     case RECEIVE_SONGS:
       return (action.songs.reduce((acc, item) => {
@@ -40,7 +58,19 @@ export default function songs (state = Map({}), action) {
 
     case DELETE_SONG:
       return state.delete(action.songId);
-    default:
+
+    case SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE:
+      return state.update(
+          action.songId,
+          song => song.set('syncStatus', true));
+
+
+    case SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE:
+      return state.update(
+          action.songId,
+          song => song.set('syncStatus', false));
+
+      default:
       return state;
   }
 }

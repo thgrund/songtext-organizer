@@ -1,18 +1,16 @@
-import {
-  ADD_THEME
-} from '../constants/ThemeActionTypes';
+import {ADD_SONG_TO_THEME,
+  ADD_THEME, RECEIVE_THEMES, DELETE_SONG_FROM_THEMES,
+  SET_THEME_SQLITE_SYNC_STATUS_TO_FALSE,
+  SET_THEME_SQLITE_SYNC_STATUS_TO_TRUE} from "../constants/ThemeActionTypes";
 import { Map } from 'immutable';
 import Theme from '../records/Theme';
 import Immutable from 'immutable';
-import {RECEIVE_THEMES, DELETE_SONG_FROM_THEMES} from "../constants/ThemeActionTypes";
 import {RECEIVE_SONGS} from "../constants/SongFormActionTypes";
 
 export default function themes (state = Map({}), action) {
-
-
   switch (action.type) {
-    case ADD_THEME:
 
+    case ADD_THEME:
       if (!action.themeGeneral) {
         return state;
       }
@@ -20,9 +18,17 @@ export default function themes (state = Map({}), action) {
       return state.set(action.themeId,
         new Theme ({
         themeId: action.themeId,
-        songIds: action.songIds,
         themeGeneral: action.themeGeneral,
       }));
+
+    case ADD_SONG_TO_THEME:
+      let songIdArr = state.get(action.themeId).songIds;
+      songIdArr.push(action.songId);
+
+      state = state.update(
+          action.themeId,
+          theme => theme.set('songIds', songIdArr));
+      return state;
 
     case RECEIVE_THEMES:
       return (action.themes.reduce((acc, item) => {
@@ -56,6 +62,17 @@ export default function themes (state = Map({}), action) {
       return state.update(action.themeId,
           theme => theme.set('songIds', newSongIds)
       );
+
+    case SET_THEME_SQLITE_SYNC_STATUS_TO_TRUE:
+      return state.update(
+          action.themeId,
+          theme => theme.set('syncStatus', true));
+
+
+    case SET_THEME_SQLITE_SYNC_STATUS_TO_FALSE:
+      return state.update(
+          action.themeId,
+          theme => theme.set('syncStatus', false));
 
     default:
       return state;

@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import SongForm from "../views/SongForm";
-import {deleteSong, updateSong} from "../actions/SongActions";
+import {insertSong} from "../actions/SongActions";
 import {insertTheme} from "../actions/ThemeActions";
 
-const SongEditFormContainer = ({songs, songId, themes, deleteSong, insertTheme, updateSong}) => (
+
+const SongNewFormContainer = ({songs, songId, themes, insertSong, insertTheme}) => (
     <SongForm
         songs={songs}
         songId={songId}
         themes={themes}
-        onDeleteSong={deleteSong}
-        onUpdateSong={updateSong}
+        onInsertSong={insertSong}
         onInsertTheme={insertTheme}
     />
 );
@@ -22,12 +22,11 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = {
-  deleteSong,
-  insertTheme,
-  updateSong
+  insertSong,
+  insertTheme
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(SongEditFormContainer)
+)(SongNewFormContainer)

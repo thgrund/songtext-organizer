@@ -1,4 +1,5 @@
 export const ADD_SONG = 'ADD_SONG';
+export const UPDATE_SONG = 'UPDATE_SONG';
 export const DELETE_SONG = 'DELETE_SONG';
 export const INSERT_SONG = 'INSERT_SONG';
 export const RECEIVE_SONGS = 'RECEIVE_SONGS';

@@ -9,7 +9,8 @@ const Song = Immutable.Record({
   themeContentRelated: '',
   themeDetailed: '',
   rhymingScheme: '',
-  chords: ''
+  chords: '',
+  syncStatus: false
 });
 
 export default Song;
