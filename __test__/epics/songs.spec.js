@@ -80,7 +80,11 @@ describe('update song from database', () => {
 
   it('dispatches the correct action when ajax call is successful', (done) => {
     const ajax = () => Observable.of();
-    const expectedOutputActions = [];
+    const expectedOutputActions = [
+        {type: DELETE_SONG_FROM_THEMES, songId: '1', themeId: '2'},
+        {type: ADD_SONG_TO_THEME, songId: '1', themeId: '2'},
+        {type: SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE, songId: '1'}
+    ];
 
     updateSong(action$, store, {ajax})
     .toArray()
@@ -98,7 +102,7 @@ describe('delete song from database', () => {
 
   it('dispatches the correct action when ajax call is successful', (done) => {
     const ajax = () => Observable.of({response: []});
-    const expectedOutputActions = [{ type: DELETE_SONG_FROM_THEMES, songId: '1', themeId: '2' }];
+    const expectedOutputActions = [{ type: DELETE_SONG_FROM_THEMES, songId: '1' }];
 
     deleteSong(action$, store, {ajax})
     .toArray()

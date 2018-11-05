@@ -67,16 +67,6 @@ describe('receive theme action', () => {
   });
 });
 
-describe('delete song from theme action', () => {
-
-  it('deleteSongFromThemes should create DELETE_SONG_FROM_THEMES action', () => {
-    expect(deleteSongFromThemes('1', '2')).toEqual({
-      songId: '1',
-      themeId: '2',
-      type: DELETE_SONG_FROM_THEMES
-    })
-  });
-});
 
 describe('SQLite sync theme action', () => {
 

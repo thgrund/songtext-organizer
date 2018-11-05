@@ -1,4 +1,5 @@
-import {ADD_SONG, RECEIVE_SONGS, DELETE_SONG, SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE, SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE} from '../../src/constants/SongFormActionTypes';
+import {ADD_SONG, RECEIVE_SONGS, DELETE_SONG, SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE,
+  UPDATE_SONG, SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE} from '../../src/constants/SongFormActionTypes';
 import reducer from '../../src/reducers/songs';
 import { Map } from 'immutable';
 
@@ -29,6 +30,38 @@ describe('songs rootReducer', () => {
     rhymingScheme: 'Reimschema',
     chords: 'Akkorde',
     syncStatus: false
+  });
+
+  it('should handle UPDATE_SONG', () => {
+    expect(
+        reducer(Map({'1': song_1}), {
+          songId: '1',
+          themeId: '2',
+          title: 'Neuer Titel',
+          poeticReferencePicture: 'Neues Poetisches Bezugsbild',
+          songtext: 'Neuer Songtext',
+          themeContentRelated: 'Neues inhaltsbezogene Thema',
+          themeDetailed: 'Neues detaillierte Thema',
+          rhymingScheme: 'Neues Reimschema',
+          chords: 'Neue Akkorde',
+          syncStatus: false,
+          type: UPDATE_SONG,
+        })
+    ).toEqual(Map({
+          '1': Song({
+            songId: '1',
+            themeId: '2',
+            title: 'Neuer Titel',
+            poeticReferencePicture: 'Neues Poetisches Bezugsbild',
+            songtext: 'Neuer Songtext',
+            themeContentRelated: 'Neues inhaltsbezogene Thema',
+            themeDetailed: 'Neues detaillierte Thema',
+            rhymingScheme: 'Neues Reimschema',
+            chords: 'Neue Akkorde',
+            syncStatus: false
+          })
+        })
+    );
   });
 
   it('should handle ADD_SONG', () => {

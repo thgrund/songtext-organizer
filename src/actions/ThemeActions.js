@@ -2,7 +2,6 @@ import {
   ADD_THEME, RECEIVE_THEMES,
   ADD_SONG_TO_THEME,
   INSERT_THEME,
-  DELETE_SONG_FROM_THEMES,
   SET_THEME_SQLITE_SYNC_STATUS_TO_TRUE,
   SET_THEME_SQLITE_SYNC_STATUS_TO_FALSE
 } from '../constants/ThemeActionTypes';
@@ -29,12 +28,6 @@ export const addSongToTheme = (themeId, songId) => ({
 export const receiveThemes = (themes) => ({
   themes,
   type: RECEIVE_THEMES
-});
-
-export const deleteSongFromThemes = (songId, themeId) => ({
-  songId,
-  themeId,
-  type: DELETE_SONG_FROM_THEMES
 });
 
 export const setThemeSqliteSyncStatusToTrue = (themeId) => ({

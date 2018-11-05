@@ -1,8 +1,9 @@
 import { addSong, insertSong } from '../../src/actions/SongActions';
 import { ADD_SONG, RECEIVE_SONGS, DELETE_SONG, INSERT_SONG,SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE, SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE } from '../../src/constants/SongFormActionTypes';
-import {receiveSongs, deleteSong, setSongSqliteSyncStatusToTrue, setSongSqliteSyncStatusToFalse} from "../../src/actions/SongActions";
+import {receiveSongs, deleteSong, setSongSqliteSyncStatusToTrue, setSongSqliteSyncStatusToFalse, deleteSongFromThemes} from "../../src/actions/SongActions";
 import Theme from "../../src/records/Theme";
 import {Map} from "immutable";
+import {DELETE_SONG_FROM_THEMES} from "../../src/constants/ThemeActionTypes";
 
 const theme_1 = Theme({
   themeId: '1',
@@ -53,6 +54,16 @@ describe('song actions', () => {
       rhymingScheme: '',
       chords: '',
       type: ADD_SONG
+    })
+  });
+});
+
+describe('delete song from theme action', () => {
+
+  it('deleteSongFromThemes should create DELETE_SONG_FROM_THEMES action', () => {
+    expect(deleteSongFromThemes('1')).toEqual({
+      songId: '1',
+      type: DELETE_SONG_FROM_THEMES
     })
   });
 });

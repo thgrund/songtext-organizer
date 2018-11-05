@@ -3,7 +3,7 @@ import {
   INSERT_SONG,
   SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE,
   DELETE_SONG,
-  UPDATE_SONG
+  UPDATE_SONG,
 } from '../constants/SongFormActionTypes';
 import {
   DELETE_SONG_FROM_THEMES,
@@ -31,7 +31,23 @@ export const updateSong = (actions$, store, {ajax}) => (
             rhymingScheme: action.rhymingScheme,
             chords: action.chords
           }
-        })
+        }).flatMap(response =>
+            Observable.concat(
+                Observable.of({
+                  type: DELETE_SONG_FROM_THEMES,
+                  songId: action.songId
+                }),
+                Observable.of({
+                  type: ADD_SONG_TO_THEME,
+                  songId: action.songId,
+                  themeId: action.themeId
+                }),
+                Observable.of({
+                  type: SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE,
+                  songId: action.songId
+                })
+            )
+        )
     )
 );
 
@@ -92,7 +108,6 @@ export const deleteSong = (actions$, store, {ajax}) => (
         .flatMap(response =>
             Observable.of({
               songId: action.songId,
-              themeId: action.themeId,
               type: DELETE_SONG_FROM_THEMES
             }),
         )

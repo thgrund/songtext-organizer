@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Form, Header, Segment, Button, Divider} from 'semantic-ui-react'
+import { Container, Form, Header, Segment, Button} from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import SongEditForm from "./SongEditForm";
 import SongNewForm from "./SongNewForm";

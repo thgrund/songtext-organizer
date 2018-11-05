@@ -4,6 +4,7 @@ import {
   SET_SONG_SQLITE_SYNC_STATUS_TO_FALSE,
   SET_SONG_SQLITE_SYNC_STATUS_TO_TRUE
 } from '../constants/SongFormActionTypes';
+import {DELETE_SONG_FROM_THEMES} from "../constants/ThemeActionTypes";
 
 
 export const insertSong = (themeId, title, poeticReferencePicture, songtext, themeContentRelated,themeDetailed, rhymingScheme, chords) => ({
@@ -56,6 +57,11 @@ export const deleteSong = (songId, themeId) => ({
   songId,
   themeId,
   type: DELETE_SONG
+});
+
+export const deleteSongFromThemes = (songId) => ({
+  songId,
+  type: DELETE_SONG_FROM_THEMES
 });
 
 export const setSongSqliteSyncStatusToTrue = (songId) => ({

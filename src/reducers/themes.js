@@ -1,11 +1,14 @@
 import {ADD_SONG_TO_THEME,
-  ADD_THEME, RECEIVE_THEMES, DELETE_SONG_FROM_THEMES,
+  ADD_THEME, RECEIVE_THEMES,
   SET_THEME_SQLITE_SYNC_STATUS_TO_FALSE,
   SET_THEME_SQLITE_SYNC_STATUS_TO_TRUE} from "../constants/ThemeActionTypes";
 import { Map } from 'immutable';
 import Theme from '../records/Theme';
 import Immutable from 'immutable';
-import {RECEIVE_SONGS} from "../constants/SongFormActionTypes";
+import {
+  DELETE_SONG_FROM_THEMES,
+  RECEIVE_SONGS
+} from "../constants/SongFormActionTypes";
 
 export default function themes (state = Map({}), action) {
   switch (action.type) {
@@ -30,6 +33,25 @@ export default function themes (state = Map({}), action) {
           theme => theme.set('songIds', songIdArr));
       return state;
 
+    case DELETE_SONG_FROM_THEMES:
+      let songId = action.songId;
+      let themeId = -1;
+      let newSongIds;
+
+      state.map((theme) => {
+        newSongIds = theme.songIds;
+        let index = newSongIds.indexOf(songId);
+
+        if (index > -1) {
+          newSongIds.splice(index, 1);
+          themeId = theme.themeId;
+          return newSongIds
+        }
+      });
+
+      return  state.update(themeId,
+        theme => theme.set('songIds', newSongIds));
+
     case RECEIVE_THEMES:
       return (action.themes.reduce((acc, item) => {
         return acc.set(item.id,
@@ -53,15 +75,6 @@ export default function themes (state = Map({}), action) {
       });
 
       return state;
-
-    case DELETE_SONG_FROM_THEMES:
-
-      let newSongIds = state.get(action.themeId).songIds.slice();
-      newSongIds.splice(newSongIds.indexOf(action.songId), 1)
-
-      return state.update(action.themeId,
-          theme => theme.set('songIds', newSongIds)
-      );
 
     case SET_THEME_SQLITE_SYNC_STATUS_TO_TRUE:
       return state.update(
