@@ -7,10 +7,6 @@ J
 src/actions/SongActions.js,f/e/fe177d6a2a1fbe0df29083f46dd49e59e9db3dea
 E
 src/reducers/songs.js,1/7/178aa1105182272d35e8dfa639cdb3f739b62475
-O
-src/actions/SongActions.spec.js,6/2/6254b8194988dda2510a04f05758ad5c0b4a2deb
-J
-src/reducers/songs.spec.js,b/4/b4bc269c940eddf35fb893d548040803b9a435f0
 H
 src/utils/SongCounter.js,b/8/b87e0a22d29a15f4f499f5d1a624c8d9a553229a
 <
@@ -26,8 +22,6 @@ B
 src/epics/songs.js,d/9/d98c6a4436ef88f695eb2ece693cdad8cf061388
 C
 src/records/Song.js,f/d/fd7f071626ee15a4729c21b6bd80c555e1b8e848
-G
-src/epics/songs.spec.js,d/d/dde9b5de740a309cd6af92c1f27c12facd48e09c
 G
 src/assets/css/song.css,b/e/be4080264b19cd6821729a25f4f3066dfcf8de51
 T
@@ -46,26 +40,16 @@ T
 $src/constants/SongFormActionTypes.js,8/8/888658fab885396e9061a8fc18e1fa1540dab4c9
 D
 src/records/Theme.js,5/7/572036c2d8ccdb21ecd173df2aa8f7665babbfbd
-P
- src/actions/ThemeActions.spec.js,d/4/d414ac98519a85b36feb82aaee961397c4905687
 F
 src/views/ThemeList.js,2/1/211e2635f4083e5a0f9ce6fe7b4fea1e3cf0aec6
 K
 src/actions/ThemeActions.js,6/f/6f6e613d46d86bd5c9b702b45eae0936ee5f8d9d
-K
-src/reducers/themes.spec.js,1/0/1039f4d4d6248b1b74fa1a5192af6d49048d94a8
 F
 src/reducers/themes.js,a/0/a0401aadec7081434bfa4ffe09807f01f39bf711
-W
-'src/reducers/initialStateLoader.spec.js,4/1/419f345ccafdcb94935678e0e6c5d12953133ea0
-\
-,src/actions/InitialStateLoaderAction.spec.js,2/5/25a0bf4ac59e6049a7c17cf14122fada572231cb
 S
 #src/constants/InitialStateLoader.js,8/b/8b3412add266a40c17a7090e8ca3ccfcf502709e
 R
 "src/reducers/initialStateLoader.js,4/0/403a882a3395871439ad0811b73cb8379abc2265
-T
-$src/epics/initialStateLoader.spec.js,1/d/1dacbe5b59720949c7e5cf26a19be6e1c98c287a
 W
 'src/actions/InitialStateLoaderAction.js,9/0/90dc479040f4c2fbf2cd7fd9d4d36463d1a70a62
 O

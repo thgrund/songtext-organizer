@@ -2,7 +2,7 @@
 import {ADD_THEME, SET_THEME_SQLITE_SYNC_STATUS_TO_TRUE, INSERT_THEME} from "../constants/ThemeActionTypes";
 import {Observable} from "rxjs/Rx";
 
-const url = 'http://192.168.0.8:3001/api/theme/';
+const url = 'http://info-grund.com:8080/songtext-organizer-api/api/theme/';
 
 export const addTheme = (actions$, store, {ajax}) => (
     actions$

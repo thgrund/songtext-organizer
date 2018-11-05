@@ -124,7 +124,7 @@ export default class SongForm extends Component {
                   </Segment>
                 }
 
-                <Form.Input name='themeContentRelated' onChange={this.inputSongChange.bind(this) } value={this.state.song.themeContentRelated} fluid label='Inhaltliches Thema' placeholder='' width={16}/>
+                <Form.TextArea name='themeContentRelated' onChange={this.inputSongChange.bind(this) } value={this.state.song.themeContentRelated} fluid label='Inhaltliches Thema' placeholder='' autoHeight rows={1} width={16}/>
 
                 <Form.TextArea name='poeticReferencePicture' onChange={this.inputSongChange.bind(this) } value={this.state.song.poeticReferencePicture} label='Poetisches Bezugsbild' autoHeight rows={1} />
 

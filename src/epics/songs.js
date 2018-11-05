@@ -11,7 +11,7 @@ import {
 import {Observable} from "rxjs/Rx";
 import 'rxjs';
 
-const url = 'http://192.168.0.8:3001/api/song/';
+const url = 'http://info-grund.com:8080/songtext-organizer-api/api/song/';
 
 export const updateSong = (actions$, store, {ajax}) => (
     actions$

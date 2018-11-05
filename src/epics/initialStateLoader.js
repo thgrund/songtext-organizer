@@ -4,8 +4,8 @@ import {RECEIVE_SONGS} from "../constants/SongFormActionTypes";
 import {Observable} from "rxjs/Rx";
 import 'rxjs';
 
-const themeUrl = 'http://192.168.0.8:3001/api/theme/';
-const songUrl = 'http://192.168.0.8:3001/api/song/';
+const themeUrl = 'http://info-grund.com:8080/songtext-organizer-api/api/theme/';
+const songUrl = 'http://info-grund.com:8080/songtext-organizer-api/api/song/';
 
 export const initiateThemeState = (actions$, store, {ajax}) => (
     actions$
